@@ -1,0 +1,17 @@
+﻿@using Sitecore.Mvc
+
+@model Sitecore.Mvc.Presentation.RenderingModel
+
+<div class="debug debug_sublayout"><div class="debug_inner1"><div class="debug_inner2">
+	<br />
+	<div class="debug_context">
+		<div><strong>Debug Context</strong></div>
+		<div>Rendering ID : @Model.Rendering.RenderingItem.ID</div>
+		<div>Rendering ID : @Model.Rendering.RenderingItem.Name</div>
+		<div>Rendering Paths.FullPath : @Model.Rendering.RenderingItem.InnerItem.Paths.FullPath</div>
+		<div>Rendering Data Source : @Model.Rendering.DataSource</div>
+		<div>Data Source Item ID : @Model.Item.ID</div>
+		<div>Data Source Item Name : @Model.Item.Name</div>
+		<div>Data Source Item Paths.FullPath : @Model.Item.Paths.FullPath</div>
+	</div>
+</div></div></div>

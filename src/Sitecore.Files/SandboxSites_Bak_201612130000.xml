@@ -1,0 +1,370 @@
+<project>
+  <Metadata>
+    <metadata>
+      <PackageName>SandboxSites_Bak_201612130000</PackageName>
+      <Author>William Chang</Author>
+      <Version />
+      <Revision />
+      <License />
+      <Comment />
+      <Attributes />
+      <Readme />
+      <Publisher />
+      <PostStep />
+      <PackageID />
+    </metadata>
+  </Metadata>
+  <SaveProject>True</SaveProject>
+  <Sources>
+    <items>
+      <Database>master</Database>
+      <Root>{F29CD44D-2C31-4503-BC3F-DEE3960298FF}</Root>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include>
+        <ItemNameFilter>
+          <Pattern />
+          <FilterSearchType>Simple</FilterSearchType>
+        </ItemNameFilter>
+        <ItemDateFilter>
+          <FilterType>CreatedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemDateFilter>
+          <FilterType>ModifiedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemPublishFilter>
+          <PublishDate />
+          <CheckWorkflow>False</CheckWorkflow>
+        </ItemPublishFilter>
+        <ItemTemplateFilter>
+          <Templates />
+        </ItemTemplateFilter>
+        <ItemUserFilter>
+          <FilterType>Created</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemUserFilter>
+          <FilterType>Modified</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemLanguageFilter>
+          <Languages />
+        </ItemLanguageFilter>
+      </Include>
+      <Exclude />
+      <Name>DataTemplates</Name>
+    </items>
+    <items>
+      <Database>master</Database>
+      <Root>{35E1FB59-6366-4CC0-89F4-51A481057D5B}</Root>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include>
+        <ItemNameFilter>
+          <Pattern />
+          <FilterSearchType>Simple</FilterSearchType>
+        </ItemNameFilter>
+        <ItemDateFilter>
+          <FilterType>CreatedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemDateFilter>
+          <FilterType>ModifiedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemPublishFilter>
+          <PublishDate />
+          <CheckWorkflow>False</CheckWorkflow>
+        </ItemPublishFilter>
+        <ItemTemplateFilter>
+          <Templates />
+        </ItemTemplateFilter>
+        <ItemUserFilter>
+          <FilterType>Created</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemUserFilter>
+          <FilterType>Modified</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemLanguageFilter>
+          <Languages />
+        </ItemLanguageFilter>
+      </Include>
+      <Exclude />
+      <Name>DataTemplates-Branches</Name>
+    </items>
+    <items>
+      <Database>master</Database>
+      <Root>{5CA77949-3DE0-4DE7-ADE7-0F898BBD35E2}</Root>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include>
+        <ItemNameFilter>
+          <Pattern />
+          <FilterSearchType>Simple</FilterSearchType>
+        </ItemNameFilter>
+        <ItemDateFilter>
+          <FilterType>CreatedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemDateFilter>
+          <FilterType>ModifiedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemPublishFilter>
+          <PublishDate />
+          <CheckWorkflow>False</CheckWorkflow>
+        </ItemPublishFilter>
+        <ItemTemplateFilter>
+          <Templates />
+        </ItemTemplateFilter>
+        <ItemUserFilter>
+          <FilterType>Created</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemUserFilter>
+          <FilterType>Modified</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemLanguageFilter>
+          <Languages />
+        </ItemLanguageFilter>
+      </Include>
+      <Exclude />
+      <Name>Layouts</Name>
+    </items>
+    <items>
+      <Database>master</Database>
+      <Root>{04463F64-BFB2-4BBE-939D-77D6D17BD4A1}</Root>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include>
+        <ItemNameFilter>
+          <Pattern />
+          <FilterSearchType>Simple</FilterSearchType>
+        </ItemNameFilter>
+        <ItemDateFilter>
+          <FilterType>CreatedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemDateFilter>
+          <FilterType>ModifiedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemPublishFilter>
+          <PublishDate />
+          <CheckWorkflow>False</CheckWorkflow>
+        </ItemPublishFilter>
+        <ItemTemplateFilter>
+          <Templates />
+        </ItemTemplateFilter>
+        <ItemUserFilter>
+          <FilterType>Created</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemUserFilter>
+          <FilterType>Modified</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemLanguageFilter>
+          <Languages />
+        </ItemLanguageFilter>
+      </Include>
+      <Exclude />
+      <Name>Renderings</Name>
+    </items>
+    <items>
+      <Database>master</Database>
+      <Root>{64D3C966-23A4-45E6-8D8A-0BC3BF562E75}</Root>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include>
+        <ItemNameFilter>
+          <Pattern />
+          <FilterSearchType>Simple</FilterSearchType>
+        </ItemNameFilter>
+        <ItemDateFilter>
+          <FilterType>CreatedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemDateFilter>
+          <FilterType>ModifiedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemPublishFilter>
+          <PublishDate />
+          <CheckWorkflow>False</CheckWorkflow>
+        </ItemPublishFilter>
+        <ItemTemplateFilter>
+          <Templates />
+        </ItemTemplateFilter>
+        <ItemUserFilter>
+          <FilterType>Created</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemUserFilter>
+          <FilterType>Modified</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemLanguageFilter>
+          <Languages />
+        </ItemLanguageFilter>
+      </Include>
+      <Exclude />
+      <Name>Contents</Name>
+    </items>
+    <items>
+      <Database>master</Database>
+      <Root>{30AF86CB-3337-428B-B879-4FCD21F50508}</Root>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include>
+        <ItemNameFilter>
+          <Pattern />
+          <FilterSearchType>Simple</FilterSearchType>
+        </ItemNameFilter>
+        <ItemDateFilter>
+          <FilterType>CreatedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemDateFilter>
+          <FilterType>ModifiedFilter</FilterType>
+          <NotOlderThan />
+          <ActionDateTo />
+          <ActionDateFrom />
+        </ItemDateFilter>
+        <ItemPublishFilter>
+          <PublishDate />
+          <CheckWorkflow>False</CheckWorkflow>
+        </ItemPublishFilter>
+        <ItemTemplateFilter>
+          <Templates />
+        </ItemTemplateFilter>
+        <ItemUserFilter>
+          <FilterType>Created</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemUserFilter>
+          <FilterType>Modified</FilterType>
+          <Accounts />
+        </ItemUserFilter>
+        <ItemLanguageFilter>
+          <Languages />
+        </ItemLanguageFilter>
+      </Include>
+      <Exclude />
+      <Name>PlaceholderSettings</Name>
+    </items>
+  </Sources>
+  <Converter>
+    <TrivialConverter>
+      <Transforms />
+    </TrivialConverter>
+  </Converter>
+  <Include />
+  <Exclude />
+  <Name />
+</project>

@@ -1,0 +1,51 @@
+﻿@using Sitecore.Mvc
+
+@model Sitecore.Mvc.Presentation.RenderingModel
+
+@functions {
+	public string GetCmsItemLayoutName(Sitecore.Data.Items.DeviceItem scDevice)
+	{
+		var cmsItemLayout = Sitecore.Context.Item.Visualization.GetLayout(Sitecore.Context.Device);
+		if(cmsItemLayout != null) {
+			return cmsItemLayout.Name;
+		} else {
+			return String.Empty;
+		}
+	}
+
+	public string GetCmsItemLayoutFilePath(Sitecore.Data.Items.DeviceItem scDevice)
+	{
+		var cmsItemLayout = Sitecore.Context.Item.Visualization.GetLayout(Sitecore.Context.Device);
+		if(cmsItemLayout != null) {
+			return cmsItemLayout.FilePath;
+		} else {
+			return String.Empty;
+		}
+	}
+}
+
+<div class="debug debug_sublayout"><div class="debug_inner1"><div class="debug_inner2">
+	<br />
+	<div class="debug_context">
+		<div><strong>Debug Context</strong></div>
+		<div>Page Item ID : @Model.PageItem.ID</div>
+		<div>Page Item Name : @Model.PageItem.Name</div>
+		<div>Page Item Paths.FullPath : @Model.PageItem.Paths.FullPath</div>
+		<div>Page Item Device Name : @Sitecore.Context.Device.Name</div>
+		<div>Page Item Layout Name : @GetCmsItemLayoutName(Sitecore.Context.Device)</div>
+		<div>Page Item Layout FilePath : @GetCmsItemLayoutFilePath(Sitecore.Context.Device)</div>
+		<div>Page Item Template ID : @Model.PageItem.Template.ID</div>
+		<div>Page Item Template Key : @Model.PageItem.Template.Key</div>
+		<div>Page Item Template Name : @Model.PageItem.Template.Name</div>
+		<div>Page Item Template FullName : @Model.PageItem.Template.FullName</div>
+		<div>Page Item Template InnerItem.Paths.FullPath : @Model.PageItem.Template.InnerItem.Paths.FullPath</div>
+		<div>Site VirtualFolder : @Sitecore.Context.Site.VirtualFolder</div>
+		<div>Site PhysicalFolder : @Sitecore.Context.Site.PhysicalFolder</div>
+		<div>Site RootPath : @Sitecore.Context.Site.RootPath</div>
+		<div>Site StartPath : @Sitecore.Context.Site.StartPath</div>
+		<div>Site StartItem : @Sitecore.Context.Site.StartItem</div>
+		<div>Site ContentStartPath : @Sitecore.Context.Site.ContentStartPath</div>
+		<div>Site ContentStartItem : @Sitecore.Context.Site.ContentStartItem</div>
+		<div>Site Database Name : @Sitecore.Context.Site.Database.Name</div>
+	</div>
+</div></div></div>

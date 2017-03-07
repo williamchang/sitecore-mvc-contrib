@@ -1,0 +1,18 @@
+﻿@using Sitecore.Mvc
+
+<div class="detail"><div class="detail_inner1"><div class="detail_inner2">
+	<div class="debug_header">EchoRendering.cshtml</div>
+	<div class="header">
+		@Html.Sitecore().Field("ContentTitle")
+	</div>
+	<div class="body">
+		@Html.Sitecore().Field("ContentBody")
+		<br />
+		ViewBag.Message : @Html.Raw(ViewBag.Message)
+		<br />
+		ViewBag.Whoami : @Html.Raw(ViewBag.Whoami)
+	</div>
+	<div class="footer">
+		@Html.Sitecore().Field("ContentFooter")
+	</div>
+</div></div></div>

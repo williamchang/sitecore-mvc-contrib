@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="InformationBeforeBuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+
+  Microsoft MSBuild
+
+  Bundled with Microsoft .NET Framework
+  Compatible with Microsoft Team Foundation Server (Team Build)
+  Created by William Chang
+
+  Created: 2016-03-09
+  Modified: 2016-03-09
+
+  References:
+  http://stackoverflow.com/questions/118091/what-name-do-you-give-the-msbuild-project-build-file
+  http://stackoverflow.com/questions/2007689/is-there-a-standard-file-extension-for-msbuild-files
+  http://stackoverflow.com/questions/699610/adding-to-built-in-excludefrombuild-itemgroup-with-web-deployment-project
+  http://johnnycoder.com/blog/2010/01/07/deploy-aspnet-web-applications-with-web-deployment-projects/
+  http://blog.avangardo.com/2010/11/how-copy-projects-files-using-msbuild/
+  http://blogs.msdn.com/b/visualstudio/archive/2010/07/06/debugging-msbuild-script-with-visual-studio.aspx
+
+  References for Properties:
+  http://stackoverflow.com/questions/1366840/overwrite-properties-with-msbuild
+  http://www.darinhiggins.com/msbuild-properties-dont-always-evaluate-properly/
+
+  References for Zip:
+  http://blog.3d-logic.com/2012/10/16/msbuild-zip-task-without-external-dependencies/
+  http://stackoverflow.com/questions/8397449/msbuild-and-creating-zip-files
+  http://blog.benhall.me.uk/2008/09/using-msbuild-to-create-deployment-zip.html
+
+  References for Inline Task:
+  http://msdn.microsoft.com/en-us/library/dd723643.aspx
+  http://msdn.microsoft.com/en-us/library/dd722601.aspx
+
+  References for Team Build:
+  http://blogs.msdn.com/b/aaronhallberg/archive/2007/06/07/preserving-output-directory-structures-in-orcas-team-build.aspx
+
+  References for OutDir property in Team Build:
+  http://www.pseale.com/blog/IHateYouOutDirParameter.aspx
+  http://blog.codeassassin.com/2012/02/03/override-the-tfs-team-build-outdir-property/
+
+  Examples for Microsoft Visual Studio Command Prompt:
+  msbuild Build.msbuildproj /t:DebugMSBuild
+  msbuild Build.msbuildproj /t:DebugMSBuild /verbosity:detailed
+  msbuild Build.msbuildproj /t:DebugMSBuild /p:Configuration=Release
+
+  Examples for Microsoft Visual Studio:
+  Post-build event command line: call "$(MSBuildBinPath)\msbuild.exe" "$(SolutionDir)/SEA.SitecoreSites.Files/Build.msbuildproj" /t:DeployToWeb
+
+  Examples for Microsoft Team Foundation Server (Team Build):
+  Projects to Build: $/SEA_CMS/SEA.SitecoreSites/SEA.SitecoreSites.Files/Build.msbuildproj
+  MSBuild Arguments: /t:PackageTeamBuild /p:Configuration=Debug
+  MSBuild Platform: Auto
+
+  -->
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsTeamBuild>0</IsTeamBuild>
+    <DropLocationRoot></DropLocationRoot>
+    <BuildDefinitionName></BuildDefinitionName>
+    <BuildNumber></BuildNumber>
+    <TeamBuild_DropLocation>$(DropLocationRoot)\$(BuildDefinitionName)\$(BuildNumber)</TeamBuild_DropLocation>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RootDirectory>$(MSBuildProjectDirectory)\..</RootDirectory>
+    <DeployDefaultWebDirectory>C:\Temp\DeployToWeb</DeployDefaultWebDirectory>
+    <DeployDefaultZipDirectory>C:\Temp\DeployToZip</DeployDefaultZipDirectory>
+    <DeployWebDirectory></DeployWebDirectory>
+    <DeployZipDirectory></DeployZipDirectory>
+    <DeployDefinedFilename Condition=" '$(DeployDefinedFilename)'=='' ">DeployToWebLocal_PostBuildEvent_Path.txt</DeployDefinedFilename>
+    <!-- Location of the SharedAssemblyInfo file that contains the application version number that will be updated by the build process. -->
+    <SharedAssemblyInfoFileDirectory>$(RootDirectory)\SEA.SitecoreShared.Web\Properties</SharedAssemblyInfoFileDirectory>
+    <!-- Path to the SharedAssemblyInfo file. -->
+    <SharedAssemblyInfoFilePath>$(SharedAssemblyInfoFileDirectory)\SharedAssemblyInfo.cs</SharedAssemblyInfoFilePath>
+    <!-- Default value for the AssemblyProduct attribute in SharedAssemblyInfo.cs -->
+    <SharedAssemblyInformationalVersion>0.0.0.0</SharedAssemblyInformationalVersion>
+    <!-- Include Sitecore 3rd party modules and 1st party Sitecore patches into the build -->
+    <IncludeModulesAndPatches>true</IncludeModulesAndPatches>
+  </PropertyGroup>
+
+  <Target Name="Build">
+    <Message Importance="high" Text="MSBuild Running Target : Build" />
+    <Message Importance="high" Text=" " />
+
+    <MSBuild
+      Projects="$(RootDirectory)\SEA.SitecoreSites.sln"
+      Targets="Build"
+      Properties="
+        Configuration=$(Configuration);
+      "
+    />
+  </Target>
+
+  <Target Name="DeployToWeb_Initial">
+    <Message Importance="high" Text="MSBuild Running Target : DeployToWeb_Initial" />
+    <Message Importance="high" Text=" " />
+
+    <ReadLinesFromFile File="$(MSBuildProjectDirectory)\$(DeployDefinedFilename)">
+      <Output PropertyName="DeployDefinedWebDirectory" TaskParameter="Lines" />
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <DeployWebDirectory Condition=" '$(DeployWebDirectory)'=='' ">$(DeployDefinedWebDirectory)</DeployWebDirectory>
+      <DeployWebDirectory Condition=" '$(DeployWebDirectory)'=='' ">$(DeployDefaultWebDirectory)</DeployWebDirectory>
+    </PropertyGroup>
+
+    <Message Importance="high" Text="MSBuild Property DeployWebDirectory : $(DeployWebDirectory)" />
+    <Message Importance="high" Text=" " />
+  </Target>
+
+  <Target Name="CleanWebLocal" DependsOnTargets="DeployToWeb_Initial">
+    <Message Importance="high" Text="MSBuild Running Target : CleanWebLocal" />
+    <Message Importance="high" Text=" " />
+
+    <ItemGroup>
+      <CleanFiles
+        Include="
+          $(DeployWebDirectory)\*.*
+        "
+        Exclude="
+          $(DeployWebDirectory)\Web.*.config;
+          $(DeployWebDirectory)\Web.config
+        "
+      />
+      <CleanDirectories
+        Include="$([System.IO.Directory]::GetDirectories($(DeployWebDirectory)))"
+        Exclude="
+          $(DeployWebDirectory);
+          $(DeployWebDirectory)\_CMP;
+          $(DeployWebDirectory)\App_Config;
+          $(DeployWebDirectory)\App_Data;
+          $(DeployWebDirectory)\upload
+        "
+      />
+    </ItemGroup>
+
+    <Exec Command="attrib -r %(CleanFiles.Identity)" />
+    <Delete Files="@(CleanFiles)" ContinueOnError="true" />
+    <RemoveDir Directories="@(CleanDirectories)" />
+  </Target>
+
+  <Target Name="CleanSolution" DependsOnTargets="DeployToWeb_Initial">
+    <Message Importance="high" Text="MSBuild Running Target : CleanSolution" />
+    <Message Importance="high" Text=" " />
+
+    <ItemGroup>
+      <CleanFiles
+        Include="
+          $(RootDirectory)\**\bin\**\*.*;
+          $(RootDirectory)\**\obj\**\*.*
+        "
+        Exclude="
+          $(RootDirectory)\*.Libraries\**\*.*;
+          $(RootDirectory)\*.Files\**\*.*
+        "
+      />
+    </ItemGroup>
+
+    <Exec Command="attrib -r %(CleanFiles.Identity)" />
+    <Delete Files="@(CleanFiles)" ContinueOnError="true" />
+  </Target>
+
+  <Target Name="UninstallSitecore" DependsOnTargets="DeployToWeb_Initial">
+    <Message Importance="high" Text="MSBuild Running Target : UninstallSitecore" />
+    <Message Importance="high" Text=" " />
+
+    <ItemGroup>
+      <CleanFiles
+        Include="
+          $(RootDirectory)\SandboxSites.Web\App_Browsers\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\Areas\Social\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\Artifacts\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\layouts\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\sitecore\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\sitecore modules\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\sitecore_files\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\temp\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\upload\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\Views\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\xsl\**\*.*;
+          $(RootDirectory)\SandboxSites.Web\*.*;
+          $(RootDirectory)\**\bin\**\*.*;
+          $(RootDirectory)\**\obj\**\*.*
+        "
+        Exclude="
+          $(RootDirectory)\SandboxSites.Web\Web.*.config;
+          $(RootDirectory)\SandboxSites.Web\Web.config;
+          $(RootDirectory)\SandboxSites.Web\*.csproj;
+          $(RootDirectory)\SandboxSites.Web\*.csproj.user;
+          $(RootDirectory)\*.Libraries\**\*.*;
+          $(RootDirectory)\*.Files\**\*.*
+        "
+      />
+      <CleanAgainDirectories
+        Include="$([System.IO.Directory]::GetDirectories($(RootDirectory)\SandboxSites.Web))"
+        Exclude="
+          $(RootDirectory)\SandboxSites.Web\App_Config;
+          $(RootDirectory)\SandboxSites.Web\Areas;
+          $(RootDirectory)\SandboxSites.Web\Properties
+        "
+      />
+      <CleanDirectoriesAgain
+        Include="$(RootDirectory)\SandboxSites.Web\Areas\Social"
+      />
+    </ItemGroup>
+
+    <Exec Command="attrib -r %(CleanFiles.Identity)" />
+    <Delete Files="@(CleanFiles)" ContinueOnError="true" />
+    <RemoveDir Directories="@(CleanDirectories)" />
+    <RemoveDir Directories="@(CleanAgainDirectories)" />
+  </Target>
+
+  <Target Name="DebugMSBuild">
+    <Message Importance="high" Text="MSBuild Running Target : DebugMSBuild" />
+    <Message Importance="high" Text=" " />
+    <Message Importance="high" Text="MSBuild Created by William Chang" />
+    <Message Importance="high" Text=" " />
+    <Message Importance="high" Text="MSBuild Property DateNow : $(DateNow)" />
+    <Message Importance="high" Text=" " />
+    <Message Importance="high" Text="MSBuild Property DeployMainFiles : $(DeployMainFiles)" />
+    <Message Importance="high" Text="MSBuild Property DeployProjectRevisedFiles : $(DeployProjectRevisedFiles)" />
+    <Message Importance="high" Text="MSBuild Property ZipFiles : $(ZipFiles)" />
+    <Message Importance="high" Text=" " />
+  </Target>
+
+  <Target Name="InformationBeforeBuild">
+    <Message Importance="high" Text="MSBuild Running Target : InformationBeforeBuild" />
+    <Message Importance="high" Text=" " />
+    <Message Importance="high" Text="MSBuild Property Configuration : $(Configuration)" />
+    <Message Importance="high" Text="MSBuild Property Platform : $(Platform)" />
+    <Message Importance="high" Text=" " />
+    <Message Importance="high" Text="MSBuild Property MSBuildProjectDirectory : $(MSBuildProjectDirectory)" />
+    <Message Importance="high" Text="MSBuild Property RootDirectory : $(RootDirectory)" />
+    <Message Importance="high" Text="MSBuild Property DeployDefaultWebDirectory : $(DeployDefaultWebDirectory)" />
+    <Message Importance="high" Text="MSBuild Property DeployDefaultZipDirectory : $(DeployDefaultZipDirectory)" />
+    <Message Importance="high" Text="MSBuild Property DeployDefinedFilename : $(DeployDefinedFilename)" />
+    <Message Importance="high" Text=" " />
+    <Message Importance="high" Text="MSBuild Property DeployWebDirectory : $(DeployWebDirectory)" />
+    <Message Importance="high" Text="MSBuild Property DeployZipDirectory : $(DeployZipDirectory)" />
+    <Message Importance="high" Text=" " />
+    <Message Importance="high" Text="MSBuild Property IsTeamBuild : $(IsTeamBuild)" />
+    <Message Importance="high" Text="MSBuild Property TeamBuild_DropLocation : $(TeamBuild_DropLocation)" />
+    <Message Importance="high" Text=" " />
+    <Message Importance="high" Text="MSBuild Property SharedAssemblyInfoFileDirectory : $(SharedAssemblyInfoFileDirectory)" />
+    <Message Importance="high" Text="MSBuild Property SharedAssemblyInfoFilePath : $(SharedAssemblyInfoFilePath))" />
+    <Message Importance="high" Text=" " />
+  </Target>
+
+  <Target Name="ThrowException_PropertyCondition">
+    <Message Importance="high" Text="MSBuild Running Target : ThrowException_PropertyCondition" />
+    <Message Importance="high" Text=" " />
+    <Message Importance="high" Text="MSBuild Operation ended because the condition of properties are not met." />
+    <Message Importance="high" Text="MSBuild Try debugging the properties for missing or malformed values." />
+    <Message Importance="high" Text=" " />
+  </Target>
+
+  <UsingTask TaskName="DebugTask" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <Items ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Text.RegularExpressions" />
+      <Using Namespace="Microsoft.Build.Framework" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            foreach(ITaskItem item in Items) {
+              Console.WriteLine("{0}{1}{2}", item.GetMetadata("RecursiveDir"), item.GetMetadata("Filename"), item.GetMetadata("Extension"));
+            }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>

@@ -1,0 +1,27 @@
+﻿@using Sitecore.Mvc
+
+@model Sitecore.Mvc.Presentation.RenderingModel
+
+@functions {
+	public string GetUrl(Sitecore.Data.Items.Item scItem) {
+		return Sitecore.Links.LinkManager.GetItemUrl(scItem);
+	}
+}
+
+<div class="list"><div class="list_inner1"><div class="list_inner2">
+	<div class="debug_header">ListRendering.cshtml</div>
+	<div class="header">
+		@Html.Sitecore().Field("ContentTitle")
+	</div>
+	<div class="body">
+		@Html.Sitecore().Field("ContentBeforeBody")
+		@if(Model.PageItem.Children.Any()) {
+			<ul>
+			@foreach(var scChildItem in Model.PageItem.Children) {
+				<li><a href="@GetUrl(scChildItem)">@Html.Sitecore().Field("ContentTitle", scChildItem)</a></li>
+			}
+			</ul>
+		}
+		@Html.Sitecore().Field("ContentAfterBody")
+	</div>
+</div></div></div>

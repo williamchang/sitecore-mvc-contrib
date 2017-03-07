@@ -1,0 +1,15 @@
+﻿@using Sitecore.Mvc
+
+<div class="widget widget_zeta"><div class="widget_inner1"><div class="widget_inner2">
+	<div class="debug_header">ZetaWidgetRendering.cshtml</div>
+	<div class="header">
+		@Html.Sitecore().Field("WidgetTitle")
+	</div>
+	<div class="body">
+		@Html.Sitecore().Field("WidgetBody")
+	</div>
+	<div class="footer">
+		@Html.Sitecore().Field("WidgetFooter")
+	</div>
+	@Html.Partial("~/Areas/Shared/Views/Shared/_DebugRendering.cshtml")
+</div></div></div>

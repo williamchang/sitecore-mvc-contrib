@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<!--[if ie]><meta http-equiv="X-UA-Compatible" content="chrome=1"><![endif]-->
+	<meta name="author" content="William Chang" />
+	<title>@ViewBag.Title - Site Layout</title>
+	<!-- BEGIN: Page Specific Styles -->
+	<style type="text/css" media="all">
+
+/* Barebone Site Layout */
+#region_header {background-color:#eee;}
+#region_middle {}
+#region_footer {background-color:#eee;}
+
+#region_middle .item {padding:10px 0;}
+
+.error_field {border:solid 2px #c24949;background-color:#ffbcbc;color:#000;}
+.debug {font-size:10px;}
+
+/* Column Sublayout */
+.sublayout_column1 {overflow:hidden;border:solid 8px #444;}
+.sublayout_column1 .debug_header {clear:both;background-color:#444;color:#fff;}
+.sublayout_column1 .column1 {display:block;clear:both;}
+
+.sublayout_column2 {overflow:hidden;border:solid 8px #666;}
+.sublayout_column2 .debug_header {clear:both;background-color:#666;color:#fff;}
+.sublayout_column2 .column1 {float:left;width:50%;}
+.sublayout_column2 .column2 {float:left;width:50%;}
+
+.sublayout_column3 {overflow:hidden;border:solid 8px #888;}
+.sublayout_column3 .debug_header {clear:both;background-color:#888;color:#fff;}
+.sublayout_column3 .column1 {float:left;width:33.3%;}
+.sublayout_column3 .column2 {float:left;width:33.3%;}
+.sublayout_column3 .column3 {float:left;width:33.3%;}
+
+/* Page Sublayout */
+.page {border:solid 8px yellow;}
+.page_detail {}
+.page_list {}
+.page_list_item {}
+
+/* General Sublayout */
+.splash {overflow:hidden;border:solid 8px brown;}
+.splash .debug_header {clear:both;background-color:brown;color:#fff;}
+
+/* Widget Sublayout */
+.widget {}
+.widget .header {border-bottom:solid 1px #000;}
+.widget .body {border-bottom:solid 1px #000;}
+.widget .footer {}
+.widget_alpha {border:solid 8px red;}
+.widget_alpha .debug_header {clear:both;background-color:red;color:#fff;}
+.widget_beta {border:solid 8px green;}
+.widget_beta .debug_header {clear:both;background-color:green;color:#fff;}
+.widget_gamma {border:solid 8px blue;}
+.widget_gamma .debug_header {clear:both;background-color:blue;color:#fff;}
+.widget_delta {border:solid 8px fuchsia;}
+.widget_delta .debug_header {clear:both;background-color:fuchsia;color:#fff;}
+.widget_epilson {border:solid 8px aqua;}
+.widget_epilson .debug_header {clear:both;background-color:aqua;color:#fff;}
+.widget_zeta {border:solid 8px purple;}
+.widget_zeta .debug_header {clear:both;background-color:purple;color:#fff;}
+
+	</style>
+	<!-- END: Page Specific Styles -->
+
+	<!-- BEGIN: Scripts -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+	<!-- END: Scripts -->
+
+	<!-- BEGIN: Page Head Bottom Specific -->
+	@RenderSection("PageHeadBottom", false)
+	<!-- END: Page Head Bottom Specific -->
+</head>
+<body>
+	@RenderBody()
+
+<!-- BEGIN: Scripts -->
+	<script type="text/javascript">
+	//<![CDATA[
+// Register ready event to be executed when the DOM document has finished loading.
+jQuery(document).ready(function($) {
+	// Do something.
+});
+	//]]>
+	</script>
+<!-- END: Scripts -->
+</body>
+</html>

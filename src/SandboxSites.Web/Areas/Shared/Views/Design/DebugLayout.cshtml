@@ -1,0 +1,46 @@
+﻿@using Sitecore.Mvc
+
+@{
+    ViewBag.Title = "DebugLayout";
+    Layout = "~/Areas/Shared/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div id="region_special_top">
+<!-- BEGIN: Region Special Top -->
+	@Html.Sitecore().Placeholder("sandboxsites_shared_region_special_top")
+<!-- END: Region Special Top -->
+</div>
+
+<div id="frame">
+	<div id="region_column"><div id="region_column_buffer">
+		<div id="region_header">
+			<h1><a href="#">@ViewBag.Title</a></h1>
+<!-- BEGIN: Region Header -->
+			@Html.Sitecore().Placeholder("sandboxsites_shared_region_header")
+<!-- END: Region Header -->
+		</div>
+		<div id="region_middle">
+<!-- BEGIN: Region Middle -->
+			@Html.Sitecore().Placeholder("sandboxsites_shared_region_middle")
+<!-- END: Region Middle -->
+		</div>
+		<div id="region_bottom">
+<!-- BEGIN: Region Bottom -->
+			@Html.Sitecore().Placeholder("sandboxsites_shared_region_bottom")
+<!-- END: Region Bottom -->
+		</div>
+		<div id="region_footer">
+<!-- BEGIN: Region Footer -->
+			@Html.Sitecore().Placeholder("sandboxsites_shared_region_footer")
+			@Html.Sitecore().ViewRendering("/Areas/Shared/Views/Shared/_DebugLayout.cshtml")
+			<p>Copyright &copy; @DateTime.Now.Year William Chang. All rights reserved.</p>
+<!-- END: Region Footer -->
+		</div>
+	</div></div>
+</div>
+
+<div id="region_special_bottom">
+<!-- BEGIN: Region Special Bottom -->
+	@Html.Sitecore().Placeholder("region_special_bottom")
+<!-- END: Region Special Bottom -->
+</div>
