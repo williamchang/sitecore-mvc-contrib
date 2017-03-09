@@ -9,7 +9,7 @@
   Created by William Chang
 
   Created: 2016-03-09
-  Modified: 2016-03-09
+  Modified: 2017-03-09
 
   References:
   http://stackoverflow.com/questions/118091/what-name-do-you-give-the-msbuild-project-build-file
@@ -155,6 +155,9 @@
           $(RootDirectory)\**\obj\**\*.*
         "
         Exclude="
+          $(RootDirectory)\Sitecore.Data\**\*.*;
+          $(RootDirectory)\Sitecore.Databases\**\*.*;
+          $(RootDirectory)\Sitecore.MediaLibrary\**\*.*;
           $(RootDirectory)\*.Libraries\**\*.*;
           $(RootDirectory)\*.Files\**\*.*
         "
@@ -172,6 +175,9 @@
     <ItemGroup>
       <CleanFiles
         Include="
+          $(RootDirectory)\Sitecore.Data\**\*.*;
+          $(RootDirectory)\Sitecore.Databases\**\*.*;
+          $(RootDirectory)\Sitecore.MediaLibrary\**\*.*;
           $(RootDirectory)\SandboxSites.Web\App_Browsers\**\*.*;
           $(RootDirectory)\SandboxSites.Web\Areas\Social\**\*.*;
           $(RootDirectory)\SandboxSites.Web\Artifacts\**\*.*;
@@ -188,6 +194,7 @@
           $(RootDirectory)\**\obj\**\*.*
         "
         Exclude="
+          $(RootDirectory)\**\.gitignore;
           $(RootDirectory)\SandboxSites.Web\Web.*.config;
           $(RootDirectory)\SandboxSites.Web\Web.config;
           $(RootDirectory)\SandboxSites.Web\*.csproj;
@@ -196,7 +203,15 @@
           $(RootDirectory)\*.Files\**\*.*
         "
       />
-      <CleanAgainDirectories
+      <CleanFilesSitecore
+        Include="
+          $(RootDirectory)\Sitecore.Libraries\**\*.*
+        "
+        Exclude="
+          $(RootDirectory)\**\.gitignore
+        "
+      />
+      <CleanDirectories
         Include="$([System.IO.Directory]::GetDirectories($(RootDirectory)\SandboxSites.Web))"
         Exclude="
           $(RootDirectory)\SandboxSites.Web\App_Config;
@@ -211,8 +226,14 @@
 
     <Exec Command="attrib -r %(CleanFiles.Identity)" />
     <Delete Files="@(CleanFiles)" ContinueOnError="true" />
+    <Delete Files="@(CleanFilesSitecore)" ContinueOnError="true" />
     <RemoveDir Directories="@(CleanDirectories)" />
-    <RemoveDir Directories="@(CleanAgainDirectories)" />
+    <RemoveDir Directories="@(CleanDirectoriesAgain)" />
+    <RemoveDir Directories="$([System.IO.Directory]::GetDirectories($(RootDirectory)\Sitecore.Data))" />
+    <RemoveDir Directories="$([System.IO.Directory]::GetDirectories($(RootDirectory)\Sitecore.Databases))" />
+    <RemoveDir Directories="$([System.IO.Directory]::GetDirectories($(RootDirectory)\Sitecore.Libraries))" />
+    <RemoveDir Directories="$([System.IO.Directory]::GetDirectories($(RootDirectory)\Sitecore.MediaLibrary\MediaCache))" />
+    <RemoveDir Directories="$([System.IO.Directory]::GetDirectories($(RootDirectory)\Sitecore.MediaLibrary\MediaFiles))" />
   </Target>
 
   <Target Name="DebugMSBuild">

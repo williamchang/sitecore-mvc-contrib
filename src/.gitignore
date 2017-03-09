@@ -1,0 +1,22 @@
+## Set certain folders/files or patterns to be ignored.
+
+# System-specific folders and files from Sitecore
+App_Browsers/
+App_Config/
+Areas/Social/
+layouts/
+sitecore/
+sitecore modules/
+sitecore_files/
+temp/
+upload/
+Views/
+xsl/
+Default.aspx
+default.css
+default.htm.sitedown
+default.js
+Global.asax
+Web.config.Oracle
+/[Ss]itecore*.zip
+/src/[Ss]itecore*.zip

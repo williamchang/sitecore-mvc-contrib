@@ -6,15 +6,15 @@ Install Sitecore Configure Files
 Created by William Chang
 
 Created: 2016-09-03
-Modified: 2017-03-02
+Modified: 2017-03-09
 
 #>
 
 param(
     [string]$WebrootFolderName = $(throw '-WebrootFolderName is required (eg site1.com).'),
     [string]$DataFolderName = $(throw '-DataFolderName is required (eg site1.com.data).'),
-    [string]$DatabaseFolderName = $(throw '-DatabaseFolderName is required (eg site1.com.databases).'),
-    [string]$MediaLibraryFolderName = $(throw '-MediaLibraryFolderName is required (eg site1.com.medialibrary).')
+    [string]$MediaLibraryFolderName = $(throw '-MediaLibraryFolderName is required (eg site1.com.medialibrary).'),
+    [string]$DatabaseFolderName = $(throw '-DatabaseFolderName is required (eg site1.com.databases).')
 )
 
 $currentScriptName = 'Install_Sitecore_ConfigureFiles'
@@ -23,8 +23,8 @@ $currentFolderPath = Get-Location
 
 $cmsWebrootFolderPath = Join-Path -Path $currentFolderPath -ChildPath $WebrootFolderName
 $cmsDataFolderPath = Join-Path -Path $currentFolderPath -ChildPath $DataFolderName
-$cmsDatabaseFolderPath = Join-Path -Path $currentFolderPath -ChildPath $DatabaseFolderName
 $cmsMediaLibraryFolderPath = Join-Path -Path $currentFolderPath -ChildPath $MediaLibraryFolderName
+$cmsDatabaseFolderPath = Join-Path -Path $currentFolderPath -ChildPath $DatabaseFolderName
 
 $cmsWebConfigChildPath = 'Web.config'
 $cmsSitecoreConfigChildPath = Join-Path -Path 'App_Config' -ChildPath 'Sitecore.config'
@@ -201,8 +201,8 @@ function Invoke-Main {
     Write-Output ('')
     Write-Output ('CMS Webroot Folder Path : {0}' -f $cmsWebrootFolderPath)
     Write-Output ('CMS Data Folder Path : {0}' -f $cmsDataFolderPath)
-    Write-Output ('CMS Database Folder Path : {0}' -f $cmsDatabaseFolderPath)
     Write-Output ('CMS Media Library Folder Path : {0}' -f $cmsMediaLibraryFolderPath)
+    Write-Output ('CMS Database Folder Path : {0}' -f $cmsDatabaseFolderPath)
     Write-Output ('')
 
     Set-WebDebugSetting -ConfigPath (Join-Path -Path $cmsWebrootFolderPath -ChildPath $cmsWebConfigChildPath)

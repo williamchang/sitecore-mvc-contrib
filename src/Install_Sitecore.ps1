@@ -6,7 +6,7 @@ Install Sitecore
 Created by William Chang
 
 Created: 2016-09-02
-Modified: 2017-03-02
+Modified: 2017-03-09
 
 PowerShell Examples:
 powershell.exe Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
@@ -16,9 +16,9 @@ powershell.exe -File C:\Temp\Install_Sitecore.ps1 -ZipFileBaseName "Sitecore 8.2
 #>
 
 param(
-    [string]$ZipFileBaseName = $(throw '-ZipFileBaseName is required.'),
-    [string]$SiteName = $(throw '-SiteName is required (eg site1.com).'),
-    [string]$DatabasePrefixName = $(throw '-DatabasePrefixName is required (eg Site1).'),
+    [string]$ZipFileBaseName = $(throw '-ZipFileBaseName is required (eg do not include the file extension).'),
+    [string]$CmsWebProjectFolderName = $(throw '-SiteName is required (eg SandboxSites.Web).'),
+    [string]$CmsPrefixFolderName = $(throw '-CmsPrefixFolderName is required (eg Sitecore).'),
     [switch]$Verbose = $False
 )
 
@@ -30,7 +30,8 @@ function Invoke-ScriptWithDotNet4 {
     if($PsVersionTable.CLRVersion.Major -lt 4) {
         $env:COMPLUS_version = 'v4.0.30319'
     }
-    .\Install_Sitecore_ConfigureFiles.ps1 -WebrootFolderName $SiteName -DataFolderName  ('{0}.data' -f $SiteName) -DatabaseFolderName ('{0}.databases' -f $SiteName) -MediaLibraryFolderName ('{0}.medialibrary' -f $SiteName)
+    .\Install_Sitecore_UnzipReleaseArchiveFile.ps1 -CmsZipFileBaseName $ZipFileBaseName -WebrootFolderName $CmsWebProjectFolderName -DataFolderName  ('{0}.Data' -f $CmsPrefixFolderName) -MediaLibraryFolderName ('{0}.MediaLibrary' -f $CmsPrefixFolderName) -DatabaseFolderName ('{0}.Databases' -f $CmsPrefixFolderName)
+    .\Install_Sitecore_ConfigureFiles.ps1 -WebrootFolderName $CmsWebProjectFolderName -DataFolderName  ('{0}.Data' -f $CmsPrefixFolderName) -MediaLibraryFolderName ('{0}.MediaLibrary' -f $CmsPrefixFolderName) -DatabaseFolderName ('{0}.Databases' -f $CmsPrefixFolderName)
 }
 
 function Invoke-Main {

@@ -83,8 +83,9 @@
     <Content Include="Areas\Site1\Views\Widgets\AlphaWidgetRendering.cshtml" />
     <Content Include="Areas\Site1\Views\Widgets\BetaWidgetRendering.cshtml" />
     <Content Include="Areas\Site1\Views\Widgets\GammaWidgetRendering.cshtml" />
-    <Content Include="App_Config\ConnectionStringsMsSql_FileSystem.config" />
-    <Content Include="App_Config\Sitecore.config" />
+    <Content Include="App_Config\Sitecore.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Site1\Views\General\SplashRendering.cshtml" />
     <Content Include="Areas\Site1\Views\Widgets\EpilsonWidgetRendering.cshtml" />
     <Content Include="Areas\Site1\Views\Widgets\DeltaWidgetRendering.cshtml" />

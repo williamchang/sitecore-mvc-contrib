@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandboxSites.Web", "src\SandboxSites.Web\SandboxSites.Web.csproj", "{18B195EE-2FE6-4E75-BD54-0B928A9F9B79}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sitecore.Files", "Sitecore.Files", "{2F268C76-3F90-4559-8129-6B64F4560126}"
+	ProjectSection(SolutionItems) = preProject
+		src\Sitecore.Files\Build.msbuildproj = src\Sitecore.Files\Build.msbuildproj
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

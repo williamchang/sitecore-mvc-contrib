@@ -18,8 +18,8 @@ http://localhost:50216/SandboxSites/Site0001/Home/Echo
 Dependencies
 
 Sitecore Application
-Sitecore 8.2 rev. 161115.zip
-    Sitecore Experience Platform 8.2 rev. 161115 (8.2 Update-1)
+Sitecore 8.2 rev. 161221.zip
+    Sitecore Experience Platform 8.2 rev. 161221 (8.2 Update-2)
 
 Sitecore Package
 SandboxSites_Bak_201612130000.zip
@@ -47,7 +47,6 @@ SandboxSites.Web.csproj - Solution Explorer
 
 App_Config
     ConnectionStrings.config
-    ConnectionStringsMsSql_FileSystem.config
     Sitecore.config
 Areas
     Shared
@@ -97,10 +96,24 @@ File System Structure
 
 SandboxSitecoreMvc
     SandboxSites.Web
+        App_Config
+        Areas
+            Shared
         SandboxSites.Web.csproj
+        Web.config
+    Sitecore.Data
+        .gitignore
+    Sitecore.Databases
+        .gitignore
     Sitecore.Files
         Build.msbuildproj
     Sitecore.Libraries
+        .gitignore
+    Sitecore.MediaLibrary
+        MediaCache
+            .gitignore
+        MediaFiles
+            .gitignore
 README.txt
 SandboxSitecoreMvc.sln
 
