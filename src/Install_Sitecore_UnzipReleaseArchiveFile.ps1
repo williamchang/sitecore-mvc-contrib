@@ -6,7 +6,7 @@ Install Sitecore Unzip Release Archive File
 Created by William Chang
 
 Created: 2016-09-03
-Modified: 2017-03-09
+Modified: 2017-03-24
 
 #>
 
@@ -143,6 +143,22 @@ function Invoke-Main {
 
     Write-Output ('')
     Write-Output ('Folders Created for CMS Media Library')
+    Write-Output ('')
+
+    Write-Output ('==========')
+
+    $zipCmsLibrarySource = Join-Path -Path $zipCmsWebrootSource -ChildPath 'bin'
+    $zipCmsLibraryTarget = Join-Path -Path $currentFolderPath -ChildPath 'Sitecore.Libraries'
+
+    Write-Output ('')
+    Write-Output ('Zip Source of CMS Library : {0}' -f $zipCmsLibrarySource)
+    Write-Output ('Zip Target of CMS Library : {0}' -f $zipCmsLibraryTarget)
+    Write-Output ('')
+
+    Invoke-Unzip -Source $zipCmsLibrarySource -Target $zipCmsLibraryTarget
+
+    Write-Output ('')
+    Write-Output ('Zip Extracted for CMS Library')
     Write-Output ('')
 
     Write-Output ('==========')

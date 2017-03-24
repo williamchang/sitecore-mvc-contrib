@@ -143,7 +143,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>call xcopy "$(SolutionDir)Sitecore.Libraries\*.*" "$(TargetDir)" /S /Y</PreBuildEvent>
+    <PreBuildEvent>xcopy /e /y "$(SolutionDir)src\Sitecore.Libraries" "$(TargetDir)"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

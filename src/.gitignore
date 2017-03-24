@@ -18,5 +18,12 @@ default.htm.sitedown
 default.js
 Global.asax
 Web.config.Oracle
+webedit.css
 /[Ss]itecore*.zip
 /src/[Ss]itecore*.zip
+
+# License files
+license.html
+license.xml
+license-webfarm server.html
+license-webfarm server.xml
